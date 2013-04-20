@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget size="362 512" name="Missive" />
+    <ImageTarget size="744.727295 1024" name="Carte_pirate" />
+  </Tracking>
+</QCARConfig>
