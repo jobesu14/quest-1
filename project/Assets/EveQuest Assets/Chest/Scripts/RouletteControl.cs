@@ -5,12 +5,37 @@ public class RouletteControl : MonoBehaviour {
 	
 	public GameObject[] serruresCol;
 	public GameObject[] roulettes;
+	public int[] correctCode;
+	
+	public GameObject unlockedTarget;
+	public string unlockFctName = "OnCodeFund";
 	
 	private int mMoveSerrureNo = -1;
 	
-	// Use this for initialization
-	void Start () {
+	private int[] mCode;
+	private Vector3[] mInitEuler;
 	
+	// Use this for initialization
+	void Awake () {
+		
+		mCode = new int[ roulettes.Length ];
+		mInitEuler = new Vector3[ roulettes.Length ];
+		
+		for( int no=0; no<roulettes.Length; no++ ) {
+			serruresCol[no].active = false;
+			mInitEuler[no] = roulettes[ no ].transform.eulerAngles;
+			mCode[no] = PlayerPrefs.GetInt("saved_code_"+no, 0);
+			setRouletteCode( no, mCode[no] );
+		}
+		
+	}
+	
+	public void ToggleColliderActivation () { // Activate collider when we are zoomed on lock system.
+		
+		foreach( GameObject col in serruresCol ) {
+			col.active = !col.active;	
+		}
+		
 	}
 	
 	public void OnFingerDown ( FingerEvent eventData ) {
@@ -42,16 +67,36 @@ public class RouletteControl : MonoBehaviour {
 		
 		if( swipeData.Direction == FingerGestures.SwipeDirection.Up ) {
 			
-			Debug.Log( "Up: "+swipeData.Move+" ; "+swipeData.Velocity );
-			roulettes[mMoveSerrureNo].transform.Rotate( Vector3.right * 36f );
+			mCode[mMoveSerrureNo] = ( ++mCode[mMoveSerrureNo] ) % 10;
+			setRouletteCode( mMoveSerrureNo, mCode[mMoveSerrureNo] );
 			
 		}
 		else if( swipeData.Direction == FingerGestures.SwipeDirection.Down ) {
 			
-			Debug.Log( "Down: "+swipeData.Move+" ; "+swipeData.Velocity );
-			roulettes[mMoveSerrureNo].transform.Rotate( -Vector3.right * 36f );
+			mCode[mMoveSerrureNo] = ( --mCode[mMoveSerrureNo] ) % 10;
+			mCode[mMoveSerrureNo] = mCode[mMoveSerrureNo] < 0 ? mCode[mMoveSerrureNo]+10 : mCode[mMoveSerrureNo];
+			setRouletteCode( mMoveSerrureNo, mCode[mMoveSerrureNo] );
+		}
+		
+		if( controlCode() ) { // Correct code fund.
 			
+			Debug.Log( "Code fund." );
+			if( unlockedTarget != null )
+				unlockedTarget.SendMessage( unlockFctName, SendMessageOptions.DontRequireReceiver );
 		}
 		
 	}
+	
+	private void setRouletteCode( int rouletteNo, int number ) {
+		PlayerPrefs.SetInt( "saved_code_"+rouletteNo, number );
+		roulettes[ rouletteNo ].transform.eulerAngles = mInitEuler[ rouletteNo ] + Vector3.right * 36f * number;
+	}
+	
+	private bool controlCode() {
+		for( int i=0; i<correctCode.Length; i++ )
+			if( correctCode[i] != mCode[i] )
+				return false;
+		return true;
+	}
+	
 }

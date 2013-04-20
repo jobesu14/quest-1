@@ -39,7 +39,7 @@ public class FingerOrbitZoom : MonoBehaviour {
 			    mYStartRot = angles.x;
 				mXDown = Input.mousePosition.x; //Input.GetAxis("Mouse X");
 				mYDown = Input.mousePosition.y; //Input.GetAxis("Mouse Y");
-				Debug.Log( "Down at " + mXDown + " ; " + mYDown );
+				//Debug.Log( "Down at " + mXDown + " ; " + mYDown );
 			}
 			else if ( Input.GetMouseButton(0) ) {
 		        float x = mXStartRot + (Input.mousePosition.x - mXDown) * xSpeed; //Input.GetAxis("Mouse X") * xSpeed * 0.02f;
