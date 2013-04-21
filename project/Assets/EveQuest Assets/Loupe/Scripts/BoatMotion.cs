@@ -9,6 +9,8 @@ public class BoatMotion : MonoBehaviour {
 	public ParticleEmitter trainee;
 	public Transform explosion;
 	public GameObject ship;
+	
+	public Transform startTrans;
 
 	// Use this for initialization
 	void Start () {
@@ -51,11 +53,25 @@ public class BoatMotion : MonoBehaviour {
         Vector3 pos = contact.point;
         Instantiate(explosion, pos, rot);
 		
+		StartCoroutine( RestartShip( ship.transform.localPosition, ship.transform.localRotation ) );
 		rigidbody.isKinematic = true;
 		trainee.emit = false;
 		ship.animation.Play();
-        //Destroy(gameObject);
+        
 		
     }
+	
+	IEnumerator RestartShip( Vector3 pos, Quaternion rot ) {
+		
+		yield return new WaitForSeconds( 5.0f );
+		
+		transform.position = startTrans.position;
+		transform.rotation = startTrans.rotation;
+		rigidbody.isKinematic = false;
+		
+		ship.transform.localPosition = pos;
+		ship.transform.localRotation = rot;
+		
+	}
 	
 }
