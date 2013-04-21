@@ -8,6 +8,7 @@ public class BoatMotion : MonoBehaviour {
 	public GameObject blower;
 	public ParticleEmitter trainee;
 	public Transform explosion;
+	public GameObject ship;
 
 	// Use this for initialization
 	void Start () {
@@ -52,7 +53,7 @@ public class BoatMotion : MonoBehaviour {
 		
 		rigidbody.isKinematic = true;
 		trainee.emit = false;
-		animation.Play();
+		ship.animation.Play();
         //Destroy(gameObject);
 		
     }
