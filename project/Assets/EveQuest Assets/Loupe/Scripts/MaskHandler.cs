@@ -12,21 +12,8 @@ public class MaskHandler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		bool maskBtRequired = PlayerPrefs.GetInt( "show_mask_bt", 0) > 0;
-		if(maskBtRequired) {
-			
-			mWantMaskOn = PlayerPrefs.GetInt( "show_mask", 0) > 0;
-			mask.SetActiveRecursively( mWantMaskOn );
-			maskImageTarget.SetActiveRecursively( true );
-		
-		}
-		else {
-		
-			gameObject.SetActiveRecursively( false );
-			//Destroy ( mask ); //.SetActiveRecursively( false );
-			//Destroy ( maskImageTarget ); //.SetActiveRecursively( false );
-		
-		}
+		mWantMaskOn = true;
+		mask.SetActiveRecursively( mWantMaskOn );
 		
 	}
 	

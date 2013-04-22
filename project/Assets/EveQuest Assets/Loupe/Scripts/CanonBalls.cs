@@ -11,18 +11,27 @@ public class CanonBalls : MonoBehaviour {
 	public Vector2 rangeY;
 	public Vector2 rangeZ;
 	
-	void Start () {
+	private bool mFireBallEnable = false;
+	
+	void OnTrackingFound () {
+		
+		mFireBallEnable = true;
 		FireBall ();
+	
 	}
 	
-	void OnDisable () {
+	void OnTrackingLost () {
+		
+		mFireBallEnable = false;
 		
 	}
 	
 	void FireBall () {
 		
-		float delay = Random.Range( dtBetweenBalls.x, dtBetweenBalls.y );
-		StartCoroutine( FireBallCoroutine ( delay ) );
+		if( mFireBallEnable ) {
+			float delay = Random.Range( dtBetweenBalls.x, dtBetweenBalls.y );
+			StartCoroutine( FireBallCoroutine ( delay ) );
+		}
 		
 	}
 	
