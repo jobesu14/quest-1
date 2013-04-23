@@ -13,7 +13,7 @@ public class SendMEssagesTrackableEventHandler : MonoBehaviour,
                                             ITrackableEventHandler
 {
 	
-	public GameObject messagesReceiver;
+	public GameObject[] messagesReceivers;
 	public string trackingFoundMethod = "OnTrackingFound";
 	public string trackingLostMethod = "OnTrackingLost";
 	
@@ -56,14 +56,16 @@ public class SendMEssagesTrackableEventHandler : MonoBehaviour,
             newStatus == TrackableBehaviour.Status.TRACKED)
         {
             OnTrackingFound();
-			if( messagesReceiver != null )
-				messagesReceiver.SendMessage( trackingFoundMethod, SendMessageOptions.DontRequireReceiver );
+			if( messagesReceivers != null )
+				foreach( GameObject msgRec in messagesReceivers )
+					msgRec.SendMessage( trackingFoundMethod, SendMessageOptions.DontRequireReceiver );
         }
         else
         {
             OnTrackingLost();
-			if( messagesReceiver != null )
-				messagesReceiver.SendMessage( trackingLostMethod, SendMessageOptions.DontRequireReceiver );
+			if( messagesReceivers != null )
+				foreach( GameObject msgRec in messagesReceivers )
+					msgRec.SendMessage( trackingLostMethod, SendMessageOptions.DontRequireReceiver );
         }
     }
 

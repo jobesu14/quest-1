@@ -2,12 +2,24 @@ using UnityEngine;
 using System.Collections;
 
 public class CalqueBtHandler : MonoBehaviour {
-
-	void OnClick() {
-		Debug.Log("Calque bt pressed");
+	
+	public GameObject itemsPanel;
+	public GameObject loadingPanel;
+	
+	void Start() {
 		
-		PlayerPrefs.SetInt( "show_mask", 1);
-		Application.LoadLevel("Loupe");
+		if( PlayerPrefs.GetInt( "show_calque_items", 0 ) == 0 )
+			gameObject.SetActiveRecursively( false );
+		
+	}
+	
+	void OnClick() {
+		
+		Destroy( itemsPanel );
+		loadingPanel.SetActiveRecursively( true );
+		
+		Application.LoadLevel("Calque");
+		
 	}
 	
 }

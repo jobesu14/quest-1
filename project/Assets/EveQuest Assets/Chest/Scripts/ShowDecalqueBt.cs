@@ -13,7 +13,7 @@ public class ShowDecalqueBt : MonoBehaviour {
 	
 	void OnZoom () {
 		
-		if( PlayerPrefs.GetInt( "show_mask_bt", 0 ) <= 0 ) {
+		if( PlayerPrefs.GetInt( "hide_decalque_bt", 0 ) <= 0 ) {
 			decalqueBt.SetActiveRecursively( true );
 		}
 	}

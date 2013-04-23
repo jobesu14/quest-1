@@ -14,7 +14,9 @@ public class DecalqueBtHandler : MonoBehaviour {
 	// Update is called once per frame
 	void OnClick () {
 		
-		PlayerPrefs.SetInt( "show_mask_bt", 1 );
+		PlayerPrefs.SetInt( "show_calque_items", 1 );
+		PlayerPrefs.SetInt( "hide_decalque_bt", 1 );
+		
 		gameObject.SetActiveRecursively( false );
 		calqueText.SetActiveRecursively( true );
 		
