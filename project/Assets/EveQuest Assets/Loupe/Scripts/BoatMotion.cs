@@ -9,12 +9,18 @@ public class BoatMotion : MonoBehaviour {
 	public ParticleEmitter trainee;
 	public Transform explosion;
 	public GameObject ship;
+	public AudioSource windSource;
 	
 	public Transform startTrans;
-
+	
+	private bool mWindBlow = false;
+	
 	// Use this for initialization
 	void Start () {
+		
 		trainee.emit = false;
+		mWindBlow = false;
+	
 	}
 	
 	// Update is called once per frame
@@ -23,6 +29,17 @@ public class BoatMotion : MonoBehaviour {
     	if( Input.GetMouseButton( 0 ) ) {
 			
 			ComputeMotion();
+			
+			if( !mWindBlow ) {
+				windSource.Play();
+				mWindBlow = !mWindBlow;
+			}
+		
+		}
+		else if( mWindBlow ) {
+			
+			windSource.Pause();
+			mWindBlow = !mWindBlow;
 		
 		}
 	
@@ -65,8 +82,8 @@ public class BoatMotion : MonoBehaviour {
 		
 		yield return new WaitForSeconds( 5.0f );
 		
-		transform.position = startTrans.position;
-		transform.rotation = startTrans.rotation;
+		transform.localPosition = startTrans.localPosition;
+		transform.localRotation = startTrans.localRotation;
 		rigidbody.isKinematic = false;
 		
 		ship.transform.localPosition = pos;
