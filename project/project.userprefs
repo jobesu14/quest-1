@@ -1,14 +1,32 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\EveQuest Assets\Loupe\Scripts\BoatMotion.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/EveQuest Assets/Loupe/Scripts/BoatMotion.cs">
     <Files>
-      <File FileName="Assets\EveQuest Assets\Loupe\Scripts\MaskHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets\EveQuest Assets\Chest\Scripts\RouletteControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\EveQuest Assets\Chest\Scripts\ComeToMe.cs" Line="1" Column="1" />
-      <File FileName="Assets\EveQuest Assets\Chest\Scripts\OpenChestManager.cs" Line="13" Column="3" />
-      <File FileName="Assets\EveQuest Assets\Loupe\Scripts\BoatMotion.cs" Line="86" Column="53" />
-      <File FileName="Assets\EveQuest Assets\Loupe\Scripts\SendMEssagesTrackableEventHandler.cs" Line="68" Column="1" />
+      <File FileName="Assets/EveQuest Assets/Loupe/Scripts/BoatMotion.cs" Line="48" Column="25" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="EveQuest Assets" expanded="True">
+                <Node name="Loupe" expanded="True">
+                  <Node name="Scripts" expanded="True">
+                    <Node name="BoatMotion.cs" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -38,7 +38,7 @@ public class BoatMotion : MonoBehaviour {
 		}
 		else if( mWindBlow ) {
 			
-			windSource.Pause();
+			windSource.Stop();
 			mWindBlow = !mWindBlow;
 		
 		}
