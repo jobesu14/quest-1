@@ -65,7 +65,8 @@ public class SendMEssagesTrackableEventHandler : MonoBehaviour,
             OnTrackingLost();
 			if( messagesReceivers != null )
 				foreach( GameObject msgRec in messagesReceivers )
-					msgRec.SendMessage( trackingLostMethod, SendMessageOptions.DontRequireReceiver );
+					if( msgRec != null )
+						msgRec.SendMessage( trackingLostMethod, SendMessageOptions.DontRequireReceiver );
         }
     }
 
