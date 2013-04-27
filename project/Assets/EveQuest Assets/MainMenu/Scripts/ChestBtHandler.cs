@@ -5,7 +5,7 @@ public class ChestBtHandler : MonoBehaviour {
 	
 	void Start() {
 		
-		if( PlayerPrefs.GetInt( "show_chest_items", 0 ) == 0 )
+		if( PlayerPrefs.GetInt( PrefsKeys.SHOW_CHEST_ITEM_KEY, 0 ) == 0 )
 			gameObject.SetActiveRecursively( false );
 		
 	}

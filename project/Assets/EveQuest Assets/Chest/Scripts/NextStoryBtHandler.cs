@@ -5,20 +5,34 @@ public class NextStoryBtHandler : MonoBehaviour {
 	
 	
 	public GameObject[] storyLabels;
-	public GameObject[] objsToFadeOut;
+	public Camera camStory;
+	public Camera camChest;
 	public float fadeDuration = 2.0f;
+	
+	public GameObject background;
 	
 	private int mStoryNo = 0;
 	
 	// Use this for initialization
 	void Start () {
 		
-		if(  PlayerPrefs.GetInt( "show_island_landing", 0 ) != 0 ) {
+		if(  PlayerPrefs.GetInt(PrefsKeys.LANDING_STORY_KEY, 0 ) != 0 ) {
+			
+			camChest.gameObject.active = false;
+			
+			foreach( GameObject lbl in storyLabels )
+				lbl.GetComponent<UILabel>().color = new Color( 1.0f, 1.0f, 1.0f, 0.0f );
+			
 			mStoryNo = 0;
 			ShowLabel( mStoryNo );
+			
 		}
 		else {
-			Destroy( transform.parent.parent.parent.parent.gameObject );
+			
+			camStory.gameObject.active = false;
+			camChest.gameObject.active = true;
+			//Destroy( camStory.gameObject.transform.parent.gameObject );
+			
 		}
 		
 	}
@@ -36,17 +50,42 @@ public class NextStoryBtHandler : MonoBehaviour {
 	
 	void ShowLabel( int no ) {
 		
-		foreach( GameObject lbl in storyLabels )
-			lbl.active = false;
+		if( no > 0 ) { // hide current.
+			TweenAlpha taOut = storyLabels[ no-1 ].GetComponent<TweenAlpha>();
+			if( taOut == null || !taOut.enabled )
+				taOut = storyLabels[ no-1 ].AddComponent<TweenAlpha>();
+			taOut.from = storyLabels[ no-1 ].GetComponent<UILabel>().color.a;
+			taOut.to = 0.0f;
+			taOut.delay = 0.0f;
+			taOut.duration = fadeDuration / 2.0f;
+		}
 		
-		storyLabels[ no ].active = true;
+		// show next.
+		TweenAlpha taIn = storyLabels[ no ].AddComponent<TweenAlpha>();
+		taIn.from = storyLabels[ no ].GetComponent<UILabel>().color.a;
+		taIn.to = 1.0f;
+		taIn.delay = fadeDuration / 2.0f;
+		taIn.duration = fadeDuration / 2.0f;
 		
 	}
 	
 	void FadeOutStoryPanel() {
 		
-		PlayerPrefs.SetInt( "show_island_landing", 0 );
-		Destroy( transform.parent.parent.parent.parent.gameObject );
+		PlayerPrefs.SetInt( PrefsKeys.LANDING_STORY_KEY, 0 );
+		
+		gameObject.SetActiveRecursively( false );
+		DoFadeOut( background, fadeDuration );
+		DoFadeOut( storyLabels[ storyLabels.Length-1 ], fadeDuration );
+		camChest.gameObject.active = true;
+		
+	}
+	
+	void DoFadeOut( GameObject go, float duration ) {
+		
+		TweenAlpha ta = go.AddComponent<TweenAlpha>();
+		ta.from = 1.0f;
+		ta.to = 0.0f;
+		ta.duration = duration;
 		
 	}
 	

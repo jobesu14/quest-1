@@ -25,8 +25,8 @@ public class GoalTouched : MonoBehaviour {
 		
 		yield return new WaitForSeconds( delay );
 		
-		PlayerPrefs.SetInt( "show_island_landing", 1 );
-		PlayerPrefs.SetInt( "show_chest_items", 1 );  
+		PlayerPrefs.SetInt( PrefsKeys.LANDING_STORY_KEY, 1 );
+		PlayerPrefs.SetInt( PrefsKeys.SHOW_CHEST_ITEM_KEY, 1 );  
 		Application.LoadLevel( "Chest" );
 		
 	}

@@ -8,7 +8,7 @@ public class CalqueBtHandler : MonoBehaviour {
 	
 	void Start() {
 		
-		if( PlayerPrefs.GetInt( "show_calque_items", 0 ) == 0 )
+		if( PlayerPrefs.GetInt( PrefsKeys.SHOW_CALQUE_ITEM_KEY, 0 ) == 0 )
 			gameObject.SetActiveRecursively( false );
 		
 	}
