@@ -24,7 +24,7 @@ public class RouletteControl : MonoBehaviour {
 		for( int no=0; no<roulettes.Length; no++ ) {
 			serruresCol[no].active = false;
 			mInitEuler[no] = roulettes[ no ].transform.eulerAngles;
-			mCode[no] = PlayerPrefs.GetInt("saved_code_"+no, 0);
+			mCode[no] = PlayerPrefs.GetInt("saved_code_"+no, 1);
 			setRouletteCode( no, mCode[no] );
 		}
 		
