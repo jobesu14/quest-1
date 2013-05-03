@@ -63,18 +63,22 @@ public class BoatMotion : MonoBehaviour {
 		
 	}
 	
-	void OnCollisionEnter(Collision collision) {
+	void OnCollisionEnter( Collision collision ) {
 		
         ContactPoint contact = collision.contacts[0];
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
         Vector3 pos = contact.point;
         Instantiate(explosion, pos, rot);
 		
-		StartCoroutine( RestartShip( ship.transform.localPosition, ship.transform.localRotation ) );
-		rigidbody.isKinematic = true;
-		trainee.emit = false;
-		ship.animation.Play();
-        
+		Debug.Log( collision.gameObject.tag );
+		
+		if( collision.gameObject.tag == "BoatDestroyer" ) {
+			collider.enabled = false;
+			StartCoroutine( RestartShip( ship.transform.localPosition, ship.transform.localRotation ) );
+			rigidbody.isKinematic = true;
+			trainee.emit = false;
+			ship.animation.Play();
+		}
 		
     }
 	
@@ -88,6 +92,8 @@ public class BoatMotion : MonoBehaviour {
 		
 		ship.transform.localPosition = pos;
 		ship.transform.localRotation = rot;
+		
+		collider.enabled = true;
 		
 	}
 	
