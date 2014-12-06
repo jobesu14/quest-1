@@ -1,23 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/EveQuest Assets/Chest/Scripts/FingerOrbitZoom.cs">
+    <Files>
+      <File FileName="Assets/EveQuest Assets/Chest/Scripts/FingerOrbitZoom.cs" Line="69" Column="3" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="EveQuest Assets" expanded="True">
-                <Node name="Chest" expanded="True">
-                  <Node name="Scripts" expanded="True">
-                    <Node name="ShowDecalqueBt.cs" selected="True" />
-                  </Node>
+            <Node name="EveQuest Assets" expanded="True">
+              <Node name="Chest" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="FingerOrbitZoom.cs" selected="True" />
                 </Node>
-                <Node name="Loupe" expanded="True">
-                  <Node name="Scripts" expanded="True" />
-                </Node>
-              </Node>
-              <Node name="Qualcomm Augmented Reality" expanded="True">
-                <Node name="Scripts" expanded="True" />
               </Node>
             </Node>
           </Node>
